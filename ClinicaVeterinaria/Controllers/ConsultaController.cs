@@ -10,27 +10,29 @@ using System.Web.Mvc;
 
 namespace ClinicaVeterinaria.Controllers
 {
-    public class ExameController : Controller
+    public class ConsultaController : Controller
     {
-        // GET: Exame
+        // GET: Consulta
         public ActionResult Index()
         {
-            return View(context.Exames.OrderBy(c => c.Descricao));
+            var consultas = context.Consultas.Include(e => e.Exame);
+            return View(consultas.ToList());
         }
         private EFContext context = new EFContext();
 
         // GET: Create
         public ActionResult Create()
         {
+            ViewBag.ExameId = new SelectList(context.Exames, "ExameId", "Descrição");
             return View();
         }
 
         // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Exame exame)
+        public ActionResult Create(Consulta consulta)
         {
-            context.Exames.Add(exame);
+            context.Consultas.Add(consulta);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -42,26 +44,28 @@ namespace ClinicaVeterinaria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Exame exame = context.Exames.Find(id);
-            if (exame == null)
+            Consulta consulta = context.Consultas.Find(id);
+            if (consulta == null)
             {
                 return HttpNotFound();
             }
-            return View(exame);
+            ViewBag.ExameId = new SelectList(context.Exames, "ExameId", "Descrição", consulta.ExameId);
+            return View(consulta);
         }
 
         // POST: Fabricantes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Exame exame)
+        public ActionResult Edit(Consulta consulta)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(exame).State = EntityState.Modified;
+                context.Entry(consulta).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(exame);
+            ViewBag.ExameId = new SelectList(context.Exames, "ExameId", "Descrição", consulta.ExameId);
+            return View(consulta);
         }
 
         // GET: Fabricantes/Delete/5
@@ -71,12 +75,12 @@ namespace ClinicaVeterinaria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Exame exame = context.Exames.Find(id);
-            if (exame == null)
+            Consulta consulta = context.Consultas.Find(id);
+            if (consulta == null)
             {
                 return HttpNotFound();
             }
-            return View(exame);
+            return View(consulta);
         }
 
         // POST: Fabricantes/Delete/5
@@ -84,10 +88,10 @@ namespace ClinicaVeterinaria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Exame exame = context.Exames.Find(id);
-            context.Exames.Remove(exame);
+            Consulta consulta = context.Consultas.Find(id);
+            context.Consultas.Remove(consulta);
             context.SaveChanges();
-            TempData["Message"] = "Categoria " + exame.Descricao.ToUpper() + " foi removida";
+            TempData["Message"] = "Categoria " + consulta.sintomas.ToUpper() + " foi removida";
             return RedirectToAction("Index");
         }
     }

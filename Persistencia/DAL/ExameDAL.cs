@@ -12,7 +12,7 @@ namespace Persistencia
     class ExameDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Exame> ObterEamesClassificadosPorNome()
+        public IQueryable<Exame> ObterExamesClassificadosPorNome()
         {
             return context.Exames.OrderBy(d => d.Descricao);
         }
