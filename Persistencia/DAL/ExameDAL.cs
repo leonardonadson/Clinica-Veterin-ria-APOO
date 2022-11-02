@@ -16,10 +16,12 @@ namespace Persistencia
         {
             return context.Exames.OrderBy(d => d.Descricao);
         }
+
         public Exame ObterExamePorId(long id)
         {
             return context.Exames.Where(e => e.ExameId == id).First();
         }
+
         public void GravarExame(Exame exame)
         {
             if (exame.ExameId == null)
@@ -32,6 +34,7 @@ namespace Persistencia
             }
             context.SaveChanges();
         }
+
         public Exame EliminarExamePorId(long id)
         {
             Exame exame = ObterExamePorId(id);

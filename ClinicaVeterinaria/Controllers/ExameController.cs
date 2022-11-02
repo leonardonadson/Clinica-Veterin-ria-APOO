@@ -12,14 +12,16 @@ namespace ClinicaVeterinaria.Controllers
 {
     public class ExameController : Controller
     {
+        private EFContext context = new EFContext();
+
         // GET: Exame
         public ActionResult Index()
         {
             return View(context.Exames.OrderBy(c => c.Descricao));
         }
-        private EFContext context = new EFContext();
 
         // GET: Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -35,7 +37,8 @@ namespace ClinicaVeterinaria.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Fabricantes/Edit/5
+        // GET: Exames/Edit/5
+        [HttpGet]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -50,7 +53,7 @@ namespace ClinicaVeterinaria.Controllers
             return View(exame);
         }
 
-        // POST: Fabricantes/Edit/5
+        // POST: Exames/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Exame exame)
@@ -64,7 +67,24 @@ namespace ClinicaVeterinaria.Controllers
             return View(exame);
         }
 
-        // GET: Fabricantes/Delete/5
+        // GET: Exames/Details/5
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Exame exame = context.Exames.Where(f => f.ExameId == id).First();
+            if (exame == null)
+            {
+                return HttpNotFound();
+            }
+            return View(exame);
+        }
+
+
+        // GET: Exames/Delete/5
+        [HttpGet]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -79,7 +99,7 @@ namespace ClinicaVeterinaria.Controllers
             return View(exame);
         }
 
-        // POST: Fabricantes/Delete/5
+        // POST: Exames/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
@@ -87,7 +107,7 @@ namespace ClinicaVeterinaria.Controllers
             Exame exame = context.Exames.Find(id);
             context.Exames.Remove(exame);
             context.SaveChanges();
-            TempData["Message"] = "Categoria " + exame.Descricao.ToUpper() + " foi removida";
+            TempData["Message"] = "Exame " + exame.Descricao.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
     }

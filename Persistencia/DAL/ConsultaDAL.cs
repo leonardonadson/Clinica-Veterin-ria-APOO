@@ -16,10 +16,12 @@ namespace Persistencia.DAL
         {
             return context.Consultas.Include(e => e.Exame).OrderBy(d => d.data_hora);
         }
+
         public Consulta ObterConsultaPorId(long id)
         {
-            return context.Consultas.Where(e => e.ConsultaId == id).Include(e => e.Exame).First();
+            return context.Consultas.Where(c => c.ConsultaId == id).Include(e => e.Exame).First();
         }
+
         public void GravarConsulta(Consulta consulta)
         {
             if (consulta.ConsultaId == null)
@@ -32,6 +34,7 @@ namespace Persistencia.DAL
             }
             context.SaveChanges();
         }
+
         public Consulta EliminarConsultaPorId(long id)
         {
             Consulta consulta = ObterConsultaPorId(id);
