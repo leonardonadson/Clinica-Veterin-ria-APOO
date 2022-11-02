@@ -19,13 +19,13 @@ namespace ClinicaVeterinaria.Controllers
         {
             var consultas =
               context.Consultas.Include(c => c.Exame).OrderBy(n => n.ConsultaId);
-            return View(consultas);
+            return View(consultas.ToList());
         }
 
         // GET: Consultas/Create
         public ActionResult Create()
         {
-            ViewBag.ExameId = new SelectList(context.Exames.OrderBy(b => b.Descricao), "ExameId", "Descrição");
+            ViewBag.ExameId = new SelectList(context.Exames.OrderBy(b => b.Descricao), "ExameId", "Descricao");
             return View();
         }
 
@@ -73,7 +73,7 @@ namespace ClinicaVeterinaria.Controllers
                 return HttpNotFound();
             }
             ViewBag.ExameId = new SelectList(context.Exames.OrderBy(b => b.Descricao), "ExameId",
-            "Descrição", consulta.ExameId);
+            "Descricao", consulta.ExameId);
             return View(consulta);
         }
 
@@ -100,7 +100,7 @@ namespace ClinicaVeterinaria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consulta consulta = context.Consultas.Where(p => p.ConsultaId == id).Include(c => c.ExameId).First();
+            Consulta consulta = context.Consultas.Find(id);
             if (consulta == null)
             {
                 return HttpNotFound();
