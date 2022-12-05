@@ -9,22 +9,20 @@ using System.Threading.Tasks;
 
 namespace Persistencia.DAL
 {
-    class VeterinarioDAL
+    public class VeterinarioDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Veterinario> ObterVeterinariosPorNome()
+        public IQueryable<Veterinario> ObterVeterinariosClassificadosPorNome()
         {
-            return context.Veterinarios.OrderBy(d => d.Nome);
+            return context.Veterinarios.OrderBy(b => b.Nome);
         }
-
         public Veterinario ObterVeterinarioPorId(long id)
         {
-            return context.Veterinarios.Where(e => e.UsuarioId == id).First();
+            return context.Veterinarios.Where(f => f.UsuarioId == id).Include("Consultas.Veterinario").First();
         }
-
         public void GravarVeterinario(Veterinario veterinario)
         {
-            if (veterinario.UsuarioId == null)
+            if (veterinario.UsuarioId == 0)
             {
                 context.Veterinarios.Add(veterinario);
             }
@@ -34,7 +32,6 @@ namespace Persistencia.DAL
             }
             context.SaveChanges();
         }
-
         public Veterinario EliminarVeterinarioPorId(long id)
         {
             Veterinario veterinario = ObterVeterinarioPorId(id);

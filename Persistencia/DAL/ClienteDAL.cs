@@ -9,22 +9,20 @@ using System.Threading.Tasks;
 
 namespace Persistencia.DAL
 {
-    class ClienteDAL
+    public class ClienteDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Cliente> ObterClassificadosPorNome()
+        public IQueryable<Cliente> ObterClientesClassificadosPorNome()
         {
-            return context.Clientes.OrderBy(d => d.Nome);
+            return context.Clientes.OrderBy(b => b.Nome);
         }
-
         public Cliente ObterClientePorId(long id)
         {
-            return context.Clientes.Where(e => e.UsuarioId == id).First();
+            return context.Clientes.Where(f => f.UsuarioId == id).Include("Pets.Cliente").First();
         }
-
         public void GravarCliente(Cliente cliente)
         {
-            if (cliente.UsuarioId == null)
+            if (cliente.UsuarioId == 0)
             {
                 context.Clientes.Add(cliente);
             }
@@ -34,7 +32,6 @@ namespace Persistencia.DAL
             }
             context.SaveChanges();
         }
-
         public Cliente EliminarClientePorId(long id)
         {
             Cliente cliente = ObterClientePorId(id);

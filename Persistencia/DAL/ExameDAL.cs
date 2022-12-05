@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Persistencia
 {
-    class ExameDAL
+    public class ExameDAL
     {
         private EFContext context = new EFContext();
         public IQueryable<Exame> ObterExamesClassificadosPorNome()

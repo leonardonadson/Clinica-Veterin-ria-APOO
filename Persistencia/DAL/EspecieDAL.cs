@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Persistencia
 {
-    class EspecieDAL
+    public class EspecieDAL
     {
         private EFContext context = new EFContext();
         public IQueryable<Especie> ObterEspeciesClassificadosPorNome()

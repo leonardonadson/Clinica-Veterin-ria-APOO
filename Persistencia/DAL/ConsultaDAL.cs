@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Persistencia.DAL
 {
-    class ConsultaDAL
+    public class ConsultaDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Consulta> ObterConsultasClassificadosPorNome()
+        public IQueryable<Consulta> ObterConsultasClassificadasPorData()
         {
             return context.Consultas.Include(e => e.Exame).OrderBy(d => d.data_hora);
         }
