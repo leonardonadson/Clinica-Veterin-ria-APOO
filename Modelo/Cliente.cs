@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class Especie
+    public class Cliente : Usuario
     {
-        public long EspecieId { get; set; }
-        public string Nome { get; set; }
+        public string cpf { get; set; }
         public IList<Pet> Pets { get; set; }
     }
 }

@@ -10,14 +10,14 @@ using System.Web.Mvc;
 
 namespace ClinicaVeterinaria.Controllers
 {
-    public class UsuarioController : Controller
+    public class PetController : Controller
     {
         private EFContext context = new EFContext();
 
-        // GET: Usuario
+        // GET: Pet
         public ActionResult Index()
         {
-            return View(context.Usuarios.OrderBy(c => c.Nome));
+            return View(context.Pets.OrderBy(c => c.Nome));
         }
 
         // GET: Create
@@ -30,14 +30,14 @@ namespace ClinicaVeterinaria.Controllers
         // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Usuario usuario)
+        public ActionResult Create(Pet pet)
         {
-            context.Usuarios.Add(usuario);
+            context.Pets.Add(pet);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        // GET: Usuarios/Edit/5
+        // GET: Pets/Edit/5
         [HttpGet]
         public ActionResult Edit(long? id)
         {
@@ -45,45 +45,45 @@ namespace ClinicaVeterinaria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = context.Usuarios.Find(id);
-            if (usuario == null)
+            Pet pet = context.Pets.Find(id);
+            if (pet == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(pet);
         }
 
-        // POST: Usuarios/Edit/5
+        // POST: Pets/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Usuario usuario)
+        public ActionResult Edit(Pet pet)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(usuario).State = EntityState.Modified;
+                context.Entry(pet).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(usuario);
+            return View(pet);
         }
 
-        // GET: Usuarios/Details/5
+        // GET: Pets/Details/5
         public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = context.Usuarios.Where(f => f.UsuarioId == id).First();
-            if (usuario == null)
+            Pet pet = context.Pets.Where(f => f.PetId == id).First();
+            if (pet == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(pet);
         }
 
 
-        // GET: Usuarios/Delete/5
+        // GET: Pets/Delete/5
         [HttpGet]
         public ActionResult Delete(long? id)
         {
@@ -91,23 +91,23 @@ namespace ClinicaVeterinaria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = context.Usuarios.Find(id);
-            if (usuario == null)
+            Pet pet = context.Pets.Find(id);
+            if (pet == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(pet);
         }
 
-        // POST: Usuarios/Delete/5
+        // POST: Pets/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Usuario usuario = context.Usuarios.Find(id);
-            context.Usuarios.Remove(usuario);
+            Pet pet = context.Pets.Find(id);
+            context.Pets.Remove(pet);
             context.SaveChanges();
-            TempData["Message"] = "Usuario " + usuario.Nome.ToUpper() + " foi removido";
+            TempData["Message"] = "Pet " + pet.Nome.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
     }
