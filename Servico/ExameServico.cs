@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Servico
 {
-    class ExameServico
+    public class ExameServico
     {
         private ExameDAL exameDAL = new ExameDAL();
         public IQueryable<Exame> ObterExamesClassificadosPorDesc()

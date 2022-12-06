@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Servico
 {
-    class ConsultaServico
+    public class ConsultaServico
     {
         private ConsultaDAL consultaDAL = new ConsultaDAL();
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Servico
 {
-    class EspecieServico
+    public class EspecieServico
     {
         private EspecieDAL especieDAL = new EspecieDAL();
         public IQueryable<Especie> ObterEspeciesClassificadasPorNome()

@@ -1,5 +1,6 @@
 ﻿using Modelo;
 using Modelo.Models;
+using Servico;
 using System;
 using System.Collections.Generic;
 using System.Linq;

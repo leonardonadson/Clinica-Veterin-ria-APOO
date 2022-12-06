@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Servico
 {
-    class PetServico
+    public class PetServico
     {
         private PetDAL petDAL = new PetDAL();
         public IQueryable<Pet> ObterPetsClassificadosPorNome()

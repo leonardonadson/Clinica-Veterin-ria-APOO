@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Servico
 {
-    class VeterinarioServico
+    public class VeterinarioServico
     {
         private VeterinarioDAL veterinarioDAL = new VeterinarioDAL();
         public IQueryable<Veterinario> ObterVeterinariosClassificadosPorNome()

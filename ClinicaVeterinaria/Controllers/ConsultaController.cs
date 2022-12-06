@@ -1,12 +1,10 @@
-﻿using Modelo;
-using Modelo.Models;
+﻿using Modelo.Models;
 using Modelo.ViewModels;
 using Persistencia.Contexts;
+using Servico;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
