@@ -1,30 +1,33 @@
-﻿using Modelo;
-using Persistencia.Contexts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Persistencia.Contexts;
+using Modelo.Models;
 
-namespace Persistencia
+
+namespace Persistencia.DAL
 {
     public class ExameDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Exame> ObterExamesClassificadosPorNome()
+        public IQueryable<Exame> ObterExamesClassificadosPorDesc()
         {
-            return context.Exames.OrderBy(d => d.Descricao);
+            return context.Exames.OrderBy(b => b.Descricao);
         }
-
+        public IQueryable<Exame> TodosExamesBD()
+        {
+            return context.Exames;
+        }
         public Exame ObterExamePorId(long id)
         {
-            return context.Exames.Where(e => e.ExameId == id).First();
+            return context.Exames.Where(c => c.Id == id).First();
         }
-
         public void GravarExame(Exame exame)
         {
-            if (exame.ExameId == null)
+            if (exame.Id == 0)
             {
                 context.Exames.Add(exame);
             }
@@ -34,7 +37,6 @@ namespace Persistencia
             }
             context.SaveChanges();
         }
-
         public Exame EliminarExamePorId(long id)
         {
             Exame exame = ObterExamePorId(id);

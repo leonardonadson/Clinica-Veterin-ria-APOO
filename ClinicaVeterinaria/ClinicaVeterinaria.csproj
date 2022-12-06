@@ -197,6 +197,13 @@
       <Project>{683750b1-5c93-4a7b-80b4-8848d40450af}</Project>
       <Name>Persistencia</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Servico\Servico.csproj">
+      <Project>{4c4c01ed-49cc-4c82-8d92-b49a35629062}</Project>
+      <Name>Servico</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

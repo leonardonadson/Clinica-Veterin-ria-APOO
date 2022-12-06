@@ -1,4 +1,5 @@
 ﻿using Modelo;
+using Modelo.Models;
 using Persistencia.DAL;
 using System;
 using System.Collections.Generic;

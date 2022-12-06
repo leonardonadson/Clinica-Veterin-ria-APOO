@@ -1,4 +1,5 @@
 ﻿using Modelo;
+using Modelo.Models;
 using Persistencia.DAL;
 using System;
 using System.Collections.Generic;
@@ -30,3 +31,4 @@ namespace Servico
             return cliente;
         }
     }
+}

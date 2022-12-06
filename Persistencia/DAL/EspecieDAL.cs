@@ -1,4 +1,4 @@
-﻿using Modelo;
+﻿using Modelo.Models;
 using Persistencia.Contexts;
 using System;
 using System.Collections.Generic;
@@ -7,24 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Persistencia
+namespace Persistencia.DAL
 {
     public class EspecieDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Especie> ObterEspeciesClassificadosPorNome()
+        public IQueryable<Especie> ObterEspeciesClassificadasPorNome()
         {
-            return context.Especies.OrderBy(d => d.Nome);
+            return context.Especies.OrderBy(b => b.Nome);
         }
-
         public Especie ObterEspeciePorId(long id)
         {
-            return context.Especies.Where(e => e.EspecieId == id).First();
+            return context.Especies.Where(c => c.Id == id).First();
         }
-
-        public void GravarUsuario(Especie especie)
+        public void GravarEspecie(Especie especie)
         {
-            if (especie.EspecieId == null)
+            if (especie.Id == 0)
             {
                 context.Especies.Add(especie);
             }
@@ -34,8 +32,7 @@ namespace Persistencia
             }
             context.SaveChanges();
         }
-
-        public Especie EliminarUsuarioPorId(long id)
+        public Especie EliminarEspeciePorId(long id)
         {
             Especie especie = ObterEspeciePorId(id);
             context.Especies.Remove(especie);

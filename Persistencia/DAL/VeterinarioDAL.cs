@@ -1,4 +1,4 @@
-﻿using Modelo;
+﻿using Modelo.Models;
 using Persistencia.Contexts;
 using System;
 using System.Collections.Generic;
@@ -18,11 +18,11 @@ namespace Persistencia.DAL
         }
         public Veterinario ObterVeterinarioPorId(long id)
         {
-            return context.Veterinarios.Where(f => f.UsuarioId == id).Include("Consultas.Veterinario").First();
+            return context.Veterinarios.Where(f => f.Id == id).Include("Consultas.Veterinario").First();
         }
         public void GravarVeterinario(Veterinario veterinario)
         {
-            if (veterinario.UsuarioId == 0)
+            if (veterinario.Id == 0)
             {
                 context.Veterinarios.Add(veterinario);
             }

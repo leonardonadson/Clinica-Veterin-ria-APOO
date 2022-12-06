@@ -1,4 +1,6 @@
 ﻿using Modelo;
+using Modelo.Models;
+using Modelo.ViewModels;
 using Persistencia.DAL;
 using System;
 using System.Collections.Generic;
@@ -11,21 +13,33 @@ namespace Servico
     class ConsultaServico
     {
         private ConsultaDAL consultaDAL = new ConsultaDAL();
+
         public IQueryable<Consulta> ObterConsultasClassificadasPorData()
         {
             return consultaDAL.ObterConsultasClassificadasPorData();
+
+        }
+        public Consulta ConsultaOriginal(ConsultaViewModel consultaViewModel)
+        {
+            return consultaDAL.ConsultaOriginal(consultaViewModel);
         }
         public Consulta ObterConsultaPorId(long id)
         {
             return consultaDAL.ObterConsultaPorId(id);
         }
-        public void GravarProduto(Consulta consulta)
+        public ICollection<ExameVinculado> PopularExames()
+        {
+            return consultaDAL.PopularExames();
+        }
+
+        public void AddOrUpdateExames(Consulta consulta, IEnumerable<ExameVinculado> examesvinculados)
+        {
+            consultaDAL.AddOrUpdateExames(consulta, examesvinculados);
+        }
+ 
+        public void GravarConsulta(Consulta consulta)
         {
             consultaDAL.GravarConsulta(consulta);
-        }
-        public Consulta EliminarConsultaPorId(long id)
-        {
-            return consultaDAL.EliminarConsultaPorId(id);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Modelo;
+using Modelo.Models;
 using Persistencia;
+using Persistencia.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,10 @@ namespace Servico
         public IQueryable<Exame> ObterExamesClassificadosPorDesc()
         {
             return exameDAL.ObterExamesClassificadosPorDesc();
+        }
+        public IQueryable<Exame> TodosExamesBD()
+        {
+            return exameDAL.TodosExamesBD();
         }
         public Exame ObterExamePorId(long id)
         {

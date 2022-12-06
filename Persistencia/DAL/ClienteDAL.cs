@@ -1,11 +1,11 @@
-﻿using Modelo;
-using Persistencia.Contexts;
+﻿using Persistencia.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modelo.Models;
 
 namespace Persistencia.DAL
 {
@@ -18,11 +18,11 @@ namespace Persistencia.DAL
         }
         public Cliente ObterClientePorId(long id)
         {
-            return context.Clientes.Where(f => f.UsuarioId == id).Include("Pets.Cliente").First();
+            return context.Clientes.Where(f => f.Id == id).Include("Pets.Cliente").First();
         }
         public void GravarCliente(Cliente cliente)
         {
-            if (cliente.UsuarioId == 0)
+            if (cliente.Id == 0)
             {
                 context.Clientes.Add(cliente);
             }
