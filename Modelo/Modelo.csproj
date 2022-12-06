@@ -54,19 +54,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cliente.cs" />
-    <Compile Include="Consulta.cs" />
-    <Compile Include="Especie.cs" />
-    <Compile Include="Exame.cs" />
-    <Compile Include="Pet.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Consulta.cs" />
+    <Compile Include="Models\Especie.cs" />
+    <Compile Include="Models\Exame.cs" />
+    <Compile Include="Models\Pet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Usuario.cs" />
-    <Compile Include="Veterinario.cs" />
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Veterinario.cs" />
+    <Compile Include="ViewModels\ConsultaViewModel.cs" />
+    <Compile Include="ViewModels\ExameVinculado.cs" />
+    <Compile Include="ViewModels\ViewModelHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

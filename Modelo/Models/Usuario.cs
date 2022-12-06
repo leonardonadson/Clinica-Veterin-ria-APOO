@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modelo
+namespace Modelo.Models
 {
-    public class Especie
+    public class Usuario
     {
-        public long EspecieId { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
-        public IList<Pet> Pets { get; set; }
+        public string Senha { get; set; }
+        public string Email { get; set; }
     }
 }

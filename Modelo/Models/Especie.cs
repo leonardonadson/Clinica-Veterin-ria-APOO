@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace Modelo
+namespace Modelo.Models
 {
-    public class Cliente : Usuario
+    public class Especie
     {
-        public string cpf { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
         public IList<Pet> Pets { get; set; }
     }
 }
